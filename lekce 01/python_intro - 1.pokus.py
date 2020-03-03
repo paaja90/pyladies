@@ -1,0 +1,6 @@
+print('Ahoj, světe!')
+jmeno = input('Jak se jmenujes? ')
+print('Ja jsem ' + jmeno)
+vek = int(input('Kolik je ti let? '))
+print('Ja jsem', jmeno, 'a je mi', vek,'let')
+print('Za rok mi bude', vek + 1, 'let')
