@@ -3,7 +3,7 @@ text = list(input("Zadej text, který chceš zašifrovat:"))
 while True:
 	try:
 		key = int(input("Zadej klíč, který bude pozitivní celé číslo:"))
-		assert(key > 0), 'Číslo musí být větší než 0'
+		assert(key > 0 and key<27), 'Číslo musí být větší než 0'
 		break
 	except:
 		print("Zkus to znova!")
