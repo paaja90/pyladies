@@ -12,6 +12,7 @@ new_text = ""
 while text:
     text_2 = text.pop(0)
     if str(text_2).isalnum():
+        
         slovo = chr(ord(text_2)+key)
         new_text = new_text + slovo    
     else:
