@@ -1,6 +1,5 @@
 from random import randrange
 
-
 def vyhodnot(herni_pole): 
     if 'xxx' in herni_pole:
         return 'x'   #Vyhrál hráč s křížky 
@@ -14,8 +13,6 @@ def vyhodnot(herni_pole):
 def tah(herni_pole, cislo_policka, symbol):   #Vrátí herní pole s daným symbolem umístěným na danou pozici
     herni_pole = herni_pole[:cislo_policka] + symbol + herni_pole[cislo_policka + 1:]
     return herni_pole
-
-#tah('--------', cislo_policka = int(input('Vyber číslo políčka pro tvůj další tah, 1-19:')), symbol = input("'Vyber svůj symbol 'x nebo o':"))
 
 def tah_hrace(herni_pole):
     while True: 
