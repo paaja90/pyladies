@@ -1,11 +1,19 @@
 #cislo = '905226/4496'
 #a format
 def spravny_format(cislo):
-    rozdelene_cislo = cislo.split('/')
-    if len(rozdelene_cislo[0]) == 6 and len(rozdelene_cislo[1]) == 4 and cislo[6] == '/':
-        return True
-    else:
-        return False
+    while True: 
+        if cislo.isalpha(): #ověří, zda uživatel nezadal písmena
+            print('Rodné číslo neobsahuje pismena')
+            cislo = input('Zadej rodné číslo znovu:')
+        elif len(cislo) == 11:
+            rozdelene_cislo = cislo.split('/')
+            if len(rozdelene_cislo[0]) == 6 and len(rozdelene_cislo[1]) == 4 and cislo[6] == '/':
+                return True
+            else:
+                return False
+        else:
+            print('Špatně zadané rodné číslo') # pokud uživatel zadá čísla ale v nespravnem formatu, vytiskne se toto. 
+            cislo = input('Zadej rodné číslo znovu:')
 
 def delitelnost(cislo):
     rozdelene_cislo = cislo.split('/')
@@ -44,8 +52,8 @@ def pohlavi(cislo):
     else:
         print('muž')
 
-datum_narozeni('905226/4496')
-spravny_format('905226/4496')
-delitelnost('905226/4496')
-pohlavi('905226/4496')
+#datum_narozeni('905226/4496')
+print(spravny_format(input('Zadej rodne cislo:')))
+#delitelnost('905226/4496')
+#pohlavi('905226/4496')
 
