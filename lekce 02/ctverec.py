@@ -10,7 +10,7 @@ str(obsah) #komentar#
 
 if cislo_je_spravne:
     print('Obvod ctverce se stranou', strana, 'cm je', str(obvod) + ' cm')
-    print('Obsah ctverce se stranou' , strana, 'cm je', str(obsah) +' cm2')
+  print('Obsah ctverce se stranou' , strana, 'cm je', str(obsah) +' cm2')
 else: 
     print('Strana musí být kladná, jinak z toho nebude čtverec!')
 print('Děkujeme za použití kalkulačky')
