@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Climbing diary</title>
+    <style>
+        tr:nth-child(odd) {background-color: #f2f2f2}
+        th { background-color: #3a6070; color: white;align-content: right;  }
+        h1 { text-align: center;}
+        table {max-width: 500px; margin:50px auto; border:3px solid;}
+        .add_button {width: 5%; margin:80px auto;}
+        
+        .content-section {
+            background: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+}
+    
+        html, body{
+            margin: 0;
+        }
+        content{
+            margin: auto;
+
+
+        }
+        header{
+            min-height: 50  px;
+            min-width: 100%;
+            background-color: #569ee2;
+            margin-bottom: 50px;
+            font-family: Arial white;
+        }
+        footer{
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        {% block header %}
+        {% endblock %}
+    </header>
+    <div id="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <p class="alert alert-{{ category }} "> {{ message }} </p>                 
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+</body>
+</html>

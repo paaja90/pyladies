@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+    <h1 >This is my climbing diary</h1>
+        
+        <table style="width:100%">
+            <tr><th><h2> Name </h2></th>
+                <th><h2> Grade </h2></th>
+                <th><h2> Sector </h2></th>
+                <th><h2> Location </h2></th>
+                <th><h2> Date </h2></th>
+                <th><h2> Style </h2></th>
+                <th><h2> </h2></th>
+            </tr>
+            {% for record in records %}
+            <tr><td>{{ record.name }}</td>
+                <td>{{ record.grade }}</td>
+                <td>{{ record.sector }}</td>
+                <td>{{ record.location }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.style }}</td>
+                <td> <form action="{{ url_for('delete', record_id=record.id) }}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">     
+                    <input type="submit" value="DELETE">
+                    </form>
+                    <a href="{{ url_for('update', record_id=record.id) }}" > <button>Edit</button></a>
+                </td>
+            </tr>
+            {% endfor%}
+        
+        </table>
+        <div class="add_button"><a href="{{ url_for('new_route') }}"><button>Add new route</button></a></h5>
+        </div>
+   
+
+{% endblock content %}
+
