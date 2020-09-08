@@ -1,14 +1,15 @@
 {% extends "main.html" %}
 {% block content %}
-    <h1 >This is my climbing diary</h1>
+    <div class="container">
+        <h1 >My climbing diary</h1>
         
-        <table style="width:100%">
-            <tr><th><h2> Name </h2></th>
-                <th><h2> Grade </h2></th>
-                <th><h2> Sector </h2></th>
-                <th><h2> Location </h2></th>
-                <th><h2> Date </h2></th>
-                <th><h2> Style </h2></th>
+        <table style="width:50%", class="table table-hover table-condensed table-bordered">
+            <tr><th><h2> <a href="{{ url_for('sort_by_name') }}"> Name</a> </h2></th>
+                <th><h2> <a href="{{ url_for('sort_by_grade') }}">Grade </a> </h2></th>
+                <th><h2><a href="{{ url_for('sort_by_sector') }}"> Sector</a>  </h2></th>
+                <th><h2><a href="{{ url_for('sort_by_location') }}"> Location</a> </h2></th>
+                <th><h2><a href="{{ url_for('sort_by_location') }}">Date </a>  </h2></th>
+                <th><h2><a href="{{ url_for('sort_by_location') }}">Style </a> </h2></th>
                 <th><h2> </h2></th>
             </tr>
             {% for record in records %}
@@ -20,17 +21,17 @@
                 <td>{{ record.style }}</td>
                 <td> <form action="{{ url_for('delete', record_id=record.id) }}" method="POST">
                     <input type="hidden" name="_method" value="DELETE">     
-                    <input type="submit" value="DELETE">
+                    <input class="btn btn-danger btn-sm btn-block" type="submit" value="DELETE">
                     </form>
-                    <a href="{{ url_for('update', record_id=record.id) }}" > <button>Edit</button></a>
+                    <a class="btn btn-primary btn-sm btn-block" href="{{ url_for('update', record_id=record.id) }}" > Edit</a>
                 </td>
             </tr>
             {% endfor%}
         
         </table>
-        <div class="add_button"><a href="{{ url_for('new_route') }}"><button>Add new route</button></a></h5>
-        </div>
+    </div>
+    <div> <a class="btn btn-success add_button btn-block" href="{{ url_for('new_route') }}">Add new route</a></h5>
+    </div>
    
 
-{% endblock content %}
-
+{% endblock content %}  
