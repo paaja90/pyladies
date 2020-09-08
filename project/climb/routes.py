@@ -4,27 +4,6 @@ from climb.models import Record
 from climb.forms import Add_record
 
 
-routes = [
-    {
-        'name': 'Zodiac',
-        'grade': '8',
-        'sector': 'Henriovka',
-        'location': 'Žleby',
-        'date': 'April 20, 2020',
-        'style': 'PP'
-        
-    },
-    {
-        'name': 'Jiné časy',
-        'grade': '7+',
-        'sector': 'Vanousy',
-        'location': 'Holštejn',
-        'date': 'April 20, 2020',
-        'style': 'PP'
-    }
-]
-
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -74,4 +53,27 @@ def update(record_id):
         form.date.data = record.date
     return render_template('new_route.html', form=form, legend='Update information', button_name='Edit')
 
+@app.route("/sort/location")
+def sort_by_location():
+    records = Record.query.order_by(Record.location).all()
+    return render_template('home.html', records=records)
 
+@app.route("/sort/grade")
+def sort_by_grade():
+    records = Record.query.order_by(Record.grade).all()
+    return render_template('home.html', records=records)
+
+@app.route("/sort/sector")
+def sort_by_sector():
+    records = Record.query.order_by(Record.sector).all()
+    return render_template('home.html', records=records)
+    
+@app.route("/sort/name")
+def sort_by_name():
+    records = Record.query.order_by(Record.name).all()
+    return render_template('home.html', records=records)
+
+@app.route("/sort/style")
+def sort_by_style():
+    records = Record.query.order_by(Record.style).all()
+    return render_template('home.html', records=records)
