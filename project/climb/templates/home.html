@@ -3,13 +3,13 @@
     <div class="container">
         <h1 >My climbing diary</h1>
         
-        <table style="width:50%", class="table table-hover table-condensed table-bordered">
-            <tr><th><h2> <a href="{{ url_for('sort_by_name') }}"> Name</a> </h2></th>
-                <th><h2> <a href="{{ url_for('sort_by_grade') }}">Grade </a> </h2></th>
-                <th><h2><a href="{{ url_for('sort_by_sector') }}"> Sector</a>  </h2></th>
-                <th><h2><a href="{{ url_for('sort_by_location') }}"> Location</a> </h2></th>
-                <th><h2><a href="{{ url_for('sort_by_location') }}">Date </a>  </h2></th>
-                <th><h2><a href="{{ url_for('sort_by_location') }}">Style </a> </h2></th>
+        <table class="table table-hover table-condensed table-bordered">
+            <tr><th><h3> <a href="{{ url_for('sort_by_name') }}"> Name</a> </h3></th>
+                <th><h3> <a href="{{ url_for('sort_by_grade') }}">Grade </a> </h3></th>
+                <th><h3><a href="{{ url_for('sort_by_sector') }}"> Sector</a>  </h3></th>
+                <th><h3><a href="{{ url_for('sort_by_location') }}"> Location</a> </h3></th>
+                <th><h3><a href="{{ url_for('sort_by_location') }}">Date </a>  </h3></th>
+                <th><h3><a href="{{ url_for('sort_by_location') }}">Style </a> </h3></th>
                 <th><h2> </h2></th>
             </tr>
             {% for record in records %}
@@ -21,17 +21,17 @@
                 <td>{{ record.style }}</td>
                 <td> <form action="{{ url_for('delete', record_id=record.id) }}" method="POST">
                     <input type="hidden" name="_method" value="DELETE">     
-                    <input class="btn btn-danger btn-sm btn-block" type="submit" value="DELETE">
+                    <input class="btn btn-dark btn-sm btn-block" type="submit" value="DELETE">
                     </form>
-                    <a class="btn btn-primary btn-sm btn-block" href="{{ url_for('update', record_id=record.id) }}" > Edit</a>
+                    <a class="btn btn-info btn-sm btn-block" href="{{ url_for('update', record_id=record.id) }}" > Edit</a>
                 </td>
             </tr>
             {% endfor%}
         
         </table>
     </div>
-    <div> <a class="btn btn-success add_button btn-block" href="{{ url_for('new_route') }}">Add new route</a></h5>
+    <div> <a class="btn btn-warning add_button btn-block btn-lg" href="{{ url_for('new_route') }}">Add new route</a></h5>
     </div>
    
 
-{% endblock content %}  
+{% endblock content %} 
