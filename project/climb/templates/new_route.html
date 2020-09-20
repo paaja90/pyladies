@@ -1,34 +1,75 @@
-{% extends "main.html" %}
-{% block content %}
-<div class=content-section>
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset>
-            <legend class="border-bottom mb-4">{{ legend }}</legend>
-            <div class="form-group">
-                {{ form.name.label(class="form-control-label") }}
-                {{ form.name(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ form.grade.label(class="form-control-label") }}
-                {{ form.grade(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ form.sector.label(class="form-control-label") }}
-                {{ form.sector(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ form.location.label(class="form-control-label") }}
-                {{ form.location(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ form.date.label(class="form-control-label") }}
-                {{ form.date(class="form-control form-control-lg") }}
-            </div>
-        </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info", value= button_name  ) }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Climbing diary</title>
+    <style> 
+        body { background-color: white; 
+        background-size: cover; background-attachment: fixed; }
+        .form_x {   margin: 70px; }  
+        .add_button {width: 10%; margin: 20px auto; font-weight: bold; }
+        .legend { font-weight: bold;} 
+        .label_x {font-size: 20px }
+    </style>
+</head>
+<body>
+    <header>
+        {% block header %}
+        {% endblock %}
+    </header>
+    <div id="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <p class="alert alert-{{ category }} "> {{ message }} </p>                 
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}
+        <div class="form_x" >
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    <legend class="border-bottom mb-4 legend">{{ legend }}</legend>
+                    <div class="form-group">
+                        {{ form.name.label(class="form-control-label") }}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.grade.label(class="form-control-label") }}
+                        {{ form.grade(class="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.sector.label(class="form-control-label") }}
+                        {{ form.sector(class="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.location.label(class="form-control-label") }}
+                        {{ form.location(class="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.style.label(class="form-control-label") }}
+                        {{ form.style(class="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.date.label(class="form-control-label") }}
+                        {{ form.date(class="form-control form-control-lg") }}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-success btn add_button", value= button_name  ) }}
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-{% endblock content %}
+        {% endblock %}
+    </div>
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+</body>
+</html>
