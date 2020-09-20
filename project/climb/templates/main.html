@@ -3,37 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <title>Climbing diary</title>
-    <style>
-        
-        th { background-color: rgba(0,0,0,0.6); color: black    ;text-align: center; font-size:30px;  }
-        h1 { text-align: center; font-size:60px; letter-spacing: 3px }
-        h2 { color: white}
-        .table {width: 85%; margin:50px auto; padding-bottom: 60px; background-color: rgba(0,0,0,0.5); 
-        color: white; font-size:medium; margin-top: 100px; }
-        .add_button {width: 13%; margin: 30px auto; font-weight:bold; border: 1px solid black }
-        a:link { text-decoration: none }
-        a { color: white}  
-        body { background-image: url(../static/picture_4.jpg); background-repeat: repeat-y; 
-        background-size: cover; background-attachment: fixed; }
-        .form_x { background-color: white; background-size: cover;  margin-left: 50px; }
-        .page { margin-top: -40px}
-        
-        header{
-    min-width: 100%;
-    background-color: white;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    font-family: Arial white;
-}
-        footer{
-        min-width: 100%;
-    background-color: white;
-    margin-bottom: 100px;
-    font-family: Arial white;    
-        }
-    </style>
+    
 </head>
 <body>
     <header>
@@ -55,8 +27,8 @@
         {% block footer %}
         {% endblock %}
     </footer>
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
