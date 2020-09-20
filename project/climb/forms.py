@@ -8,5 +8,6 @@ class Add_record(FlaskForm):
     grade = StringField('Grade', validators=[DataRequired()])
     sector = StringField('Sector', validators=[])
     location = StringField('Location', validators=[DataRequired()])
-    date = DateField('Date of climb', validators=[])
+    style = StringField('Style', validators=[])
+    date = DateField('Date of climb (DD-MM-YYY)', format='%d-%m-%Y')
     submit = SubmitField('Add')
