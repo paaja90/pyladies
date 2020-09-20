@@ -8,30 +8,60 @@
                 <th><h3> <a href="{{ url_for('sort_by_grade') }}">Grade </a> </h3></th>
                 <th><h3><a href="{{ url_for('sort_by_sector') }}"> Sector</a>  </h3></th>
                 <th><h3><a href="{{ url_for('sort_by_location') }}"> Location</a> </h3></th>
-                <th><h3><a href="{{ url_for('sort_by_location') }}">Date </a>  </h3></th>
+                <th><h3><a href="{{ url_for('sort_by_date') }}">Date </a>  </h3></th>
                 <th><h3><a href="{{ url_for('sort_by_location') }}">Style </a> </h3></th>
                 <th><h2> </h2></th>
+                <th><h2> </h2></th>
             </tr>
-            {% for record in records %}
+            {% for record in records.items %}
             <tr><td>{{ record.name }}</td>
                 <td>{{ record.grade }}</td>
                 <td>{{ record.sector }}</td>
                 <td>{{ record.location }}</td>
-                <td>{{ record.date }}</td>
-                <td>{{ record.style }}</td>
-                <td> <form action="{{ url_for('delete', record_id=record.id) }}" method="POST">
-                    <input type="hidden" name="_method" value="DELETE">     
-                    <input class="btn btn-dark btn-sm btn-block" type="submit" value="DELETE">
-                    </form>
-                    <a class="btn btn-info btn-sm btn-block" href="{{ url_for('update', record_id=record.id) }}" > Edit</a>
+                <td type="date" data-date="" data-date-format="DD MM YYYY">{{ record.date }}</td>
+                <td>{% if record.style %}
+                        {{ record.style }}                        
+                    {% endif %}</td>
+                <td><a class="btn btn-info btn-sm btn-block" href="{{ url_for('update', record_id=record.id) }}" > Edit</a>                   
                 </td>
+                <td>   
+                    <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    <!-- Modal https://getbootstrap.com/docs/4.0/components/modal/ -->
+                    <div class="modal fade" id="deleteModal" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" style="color:black" id="deleteModalLabel">Do you really want to delete this route?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>   
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="{{ url_for('delete', record_id=record.id) }}" method="POST">
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </td>    
+                
             </tr>
             {% endfor%}
+        </table>    
+            
         
-        </table>
     </div>
-    <div> <a class="btn btn-warning add_button btn-block btn-lg" href="{{ url_for('new_route') }}">Add new route</a></h5>
+    <div class="col-md-12 text-center page">
+         {% for page_num in records.iter_pages() %}
+            {% if page_num %}
+                <a class="btn btn-success btn-sm "  href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
     </div>
-   
+    
+    <div><a class="btn btn-warning add_button btn-block btn-lg" href="{{ url_for('new_route') }}">Add new route</a></h5>
+    </div>
 
-{% endblock content %} 
+{% endblock content %}
