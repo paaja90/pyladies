@@ -7,7 +7,8 @@ from climb.forms import Add_record
 @app.route("/")
 @app.route("/home")
 def home():
-    records = Record.query.all()
+    page = request.args.get('page',1,type=int)
+    records = Record.query.paginate(page=page, per_page=12)
     return render_template("home.html", records=records)
 
 if __name__ == '__main__':
@@ -22,7 +23,7 @@ def new_route():
         db.session.commit()
         flash('New route has been added!', 'success')
         return redirect(url_for('home'))
-    return render_template('new_route.html', form=form, legend='Add route', button_name='Add')
+    return render_template('new_route.html', form=form, legend='Add new route', button_name='Add')
 
 @app.route("/routes/<int:record_id>/delete", methods=['POST'])
 def delete(record_id):
@@ -41,6 +42,7 @@ def update(record_id):
         record.grade = form.grade.data
         record.sector = form.sector.data
         record.location = form.location.data
+        record.style = form.style.data
         record.date = form.date.data
         db.session.commit()
         flash('Your record has been updated!', 'success')
@@ -50,30 +52,36 @@ def update(record_id):
         form.grade.data = record.grade
         form.sector.data = record.sector
         form.location.data = record.location
+        form.style.data = record.style
         form.date.data = record.date
     return render_template('new_route.html', form=form, legend='Update information', button_name='Edit')
 
 @app.route("/sort/location")
 def sort_by_location():
-    records = Record.query.order_by(Record.location).all()
-    return render_template('home.html', records=records)
+    page = request.args.get('page',1,type=int)
+    records = Record.query.order_by(Record.location).paginate(page=page, per_page=12)
+    return render_template("home.html", records=records)
 
 @app.route("/sort/grade")
 def sort_by_grade():
-    records = Record.query.order_by(Record.grade).all()
+    page = request.args.get('page',1,type=int)
+    records = Record.query.order_by(Record.grade.desc()).paginate(page=page, per_page=12)
     return render_template('home.html', records=records)
 
 @app.route("/sort/sector")
 def sort_by_sector():
-    records = Record.query.order_by(Record.sector).all()
+    page = request.args.get('page',1,type=int)
+    records = Record.query.order_by(Record.sector).paginate(page=page, per_page=12)
     return render_template('home.html', records=records)
     
 @app.route("/sort/name")
 def sort_by_name():
-    records = Record.query.order_by(Record.name).all()
+    page = request.args.get('page',1,type=int)
+    records = Record.query.order_by(Record.name).paginate(page=page, per_page=12)
     return render_template('home.html', records=records)
 
-@app.route("/sort/style")
-def sort_by_style():
-    records = Record.query.order_by(Record.style).all()
+@app.route("/sort/date")
+def sort_by_date():
+    page = request.args.get('page',1,type=int)
+    records = Record.query.order_by(Record.date.desc()).paginate(page=page, per_page=12)
     return render_template('home.html', records=records)
